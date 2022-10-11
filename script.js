@@ -1,7 +1,9 @@
 let form = document.getElementById("form")
-let joke = (jokes) => {
+function joke(jokes) {
+    console.log('joke fn')
     let text = document.createElement("p")
     text.innerText = jokes
+    document.body.appendChild(text)
 }
 const fetchJokes = () => {
 const apiURL = `https://icanhazdadjoke.com/`
@@ -21,16 +23,16 @@ fetch(apiURL, {
 .then(jsonJokes=>{
     // whatever we return in the first .then gets
     // passed into THIS callback as the argument
+    joke(jsonJokes.joke)
     console.log(jsonJokes.joke)
-    fetchedJokes (jsonJokes.joke)
 })
 .catch(err=>{
     console.log(err)
 })
 }
-const clearList=()=>{
-    diplayJoke.innerHTML=""
-}
+// const clearList=()=>{
+//     diplayJoke.innerHTML=""
+// }
 
 form.addEventListener("submit",(e) =>{
     e.preventDefault()
